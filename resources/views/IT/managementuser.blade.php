@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="content">
-    <h1 class="mb-3" style="color:#0f172a;">Management User</h1>
+    <h1 class="mb-3" style="color:#0f172a;">Management uUser</h1>
 
     <div class="card shadow-sm">
         <div class="card-body">
