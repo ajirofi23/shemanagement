@@ -127,6 +127,7 @@
                 <a href="{{ route('she.dashboard') }}" class="active">
                     <i class="bi bi-speedometer2"></i> Dashboard
                 </a>
+
             </li>
             <li>
                 <a href="#">
@@ -161,6 +162,8 @@
             </button>
         </div>
     </nav>
+
+    
 
     {{-- <!-- Main Content (Contoh sederhana) -->
     <div style="margin-left: 260px; padding: 2rem; background: #f9fafb; min-height: 100vh;">

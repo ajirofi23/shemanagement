@@ -17,19 +17,34 @@
     <style>
         /* === Sidebar Modern UI === */
         .sidebar {
-            width: 260px;
-            background: linear-gradient(180deg, #717d8b 0%, #64707e 100%);
-            color: white;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding: 24px 0;
-            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
-            font-family: 'Poppins', sans-serif;
-            display: flex;
-            flex-direction: column;
-        }
+        width: 260px;
+        background: linear-gradient(180deg, #717d8b 0%, #64707e 100%);
+        color: white;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 24px 0;
+        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        flex-direction: column;
+        z-index: 1000 !important; /* BIAR SELALU DI DEPAN */
+    }
+
+    .main-content {
+        margin-left: 260px;
+        padding: 2rem;
+        background: #f9fafb;
+        min-height: 100vh;
+        position: relative;
+        z-index: 1; /* di bawah sidebar */
+        overflow-x: auto; /* scroll horizontal tabel */
+    }
+
+    body {
+        overflow-x: hidden; /* cegah konten ngebrojol keluar */
+    }
 
         .brand {
             font-size: 1.8rem;
@@ -114,6 +129,22 @@
         .logout-btn i {
             font-size: 1.1rem;
         }
+
+        .custom-table-wrapper {
+    padding-right: 20px;   /* biar ada jarak kanan */
+    padding-left: 5px;
+    overflow-x: auto;
+}
+
+.table td, 
+.table th {
+    white-space: nowrap;   /* teks tidak turun ke bawah */
+}
+
+.table img {
+    border-radius: 4px;
+}
+
     </style>
 </head>
 <body>
@@ -124,15 +155,19 @@
 
         <ul class="menu">
     <li>
-        <a href="{{ route('she.dashboard') }}" class="active">
-            <i class="bi bi-speedometer2"></i> Dashboard
-        </a>
+        <a href="{{ route('it.dashboard') }}"
+   class="{{ request()->routeIs('it.dashboard') ? 'active' : '' }}">
+    <i class="bi bi-speedometer2"></i> Dashboard
+</a>
+
     </li>
 
     <li>
-        <a href="{{ route('it.managementuser') }}">
-            <i class="bi bi-people"></i> Management User
-        </a>
+        <a href="{{ route('it.managementuser') }}"
+   class="{{ request()->routeIs('it.managementuser') ? 'active' : '' }}">
+    <i class="bi bi-people"></i> Management User
+</a>
+
     </li>
 </ul>
 
@@ -143,11 +178,9 @@
         </div>
     </nav>
 
-    {{-- <!-- Main Content (Contoh sederhana) -->
-    <div style="margin-left: 260px; padding: 2rem; background: #f9fafb; min-height: 100vh;">
-        <h1 style="color: #0f172a;">SHE Dashboard – PT AICC</h1>
-        <p class="text-muted">Welcome to the SHE Monitoring System.</p>
-    </div> --}}
+    <div class="main-content" style="margin-left:260px; padding:2rem; background:#f9fafb; min-height:100vh;">
+    @yield('content')
+</div>
 
     <!-- Bootstrap JS (Opsional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -29,6 +29,7 @@ Route::post('/logout', [LoginController::class, 'logout'])
 Route::view('/she/dashboard', 'SHE.dashboard')->name('she.dashboard');
 
 Route::view('/it/management-user', 'IT.managementuser')->name('it.managementuser');
+Route::view('/it/dashboard', 'IT.dashboard')->name('it.dashboard');
 Route::get('/she-policies', function () {
     return view('she-policies');
 })->name('she.policies');
