@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// Removed unused View facade import
 use App\Http\Controllers\TrainingMaterialsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
@@ -42,3 +43,29 @@ Route::get('/training-materials', [TrainingMaterialsController::class, 'index'])
 Route::get('/she/hyari-hatto', function () {
     return view('she.hyari_hatto');
 })->name('she.hyarihatto');
+
+// // Dashboard (opsional bila belum ada)
+// Route::get('/she/dashboard', function () {
+//     return view('welcome'); // ganti ke view dashboard Anda bila sudah ada
+// })->name('she.dashboard');
+
+// Hyari Hatto (opsional bila belum ada)
+Route::get('/she/hyari-hatto', function () {
+    return view('she.hyari_hatto'); // ganti ke view hyari hatto Anda bila sudah ada
+})->name('she.hyarihatto');
+
+// HALAMAN INSIDEN (tanpa controller)
+Route::get('/she/insiden', function () {
+    return view('SHE.insiden');
+})->name('she.insiden');
+
+// SHE - Insiden Form (no controller)
+Route::get('/she/insiden/form', function () {
+    return view('SHE.insiden_form');
+})->name('she.insiden.form');
+
+// Optional: handle submit without controller (demo)
+// You can later replace this with real persistence logic.
+Route::post('/she/insiden/store', function (\Illuminate\Http\Request $request) {
+    return redirect()->route('she.insiden.form')->with('status', 'Laporan berhasil dikirim.');
+})->name('she.insiden.store');

@@ -1,66 +1,83 @@
-@php
-    $title = "Data Laporan Hyari Hatto";
-@endphp
-
 @extends('layout.sidebar')
-
+@include('layout.header')
 @section('content')
 
 <style>
     body {
         margin: 0;
         font-family: 'Poppins', sans-serif;
-        background: #f9fafb;
+        background: #f3f4f6;
         color: #0f172a;
+    }
+
+    /* GLOBAL ANIMATION */
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeSlide {
+        from { opacity: 0; transform: translateX(-10px); }
+        to { opacity: 1; transform: translateX(0); }
     }
 
     /* FOLLOW LAYOUT SIDEBAR & HEADER */
     .content-wrapper {
-        margin-left: 260px;       /* sidebar width */
+        margin-left: 260px;
         padding: 25px;
-        padding-top: 95px;        /* header height */
-        font-family: 'Poppins', sans-serif;
+        padding-top: 95px;
+        animation: fadeUp 0.5s ease-out;
     }
 
+    /* TITLES */
     .page-title {
-        font-size: 28px;
+        font-size: 30px;
         font-weight: 700;
         margin-bottom: 4px;
-        color: #111827;
-        letter-spacing: -0.3px;
+        color: #0f172a;
+        letter-spacing: -0.4px;
+        animation: fadeSlide 0.6s ease-out;
     }
 
     .page-subtitle {
         font-size: 15px;
         color: #6b7280;
         margin-bottom: 24px;
+        animation: fadeSlide 0.7s ease-out;
     }
 
+    /* SEARCH + FILTER WRAPPER */
     .search-filter-wrap {
         display: flex;
         gap: 16px;
         flex-wrap: wrap;
         align-items: center;
         margin-bottom: 24px;
-        background: #ffffff;
-        padding: 16px;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        background: #ffffffcc;
+        backdrop-filter: blur(6px);
+        padding: 18px;
+        border-radius: 14px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        transition: 0.3s ease;
+    }
+    .search-filter-wrap:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
     }
 
+    /* SEARCH BOX */
     .search-wrap {
         max-width: 360px;
         position: relative;
         flex: 1;
         min-width: 240px;
+        animation: fadeUp 0.8s ease-out;
     }
-
     .search-wrap i {
         position: absolute;
         left: 14px;
         top: 50%;
         transform: translateY(-50%);
-        color: #9ca3af;
+        color: #94a3b8;
         font-size: 18px;
     }
 
@@ -68,44 +85,92 @@
         width: 100%;
         padding: 12px 12px 12px 44px;
         border: 1px solid #e2e8f0;
-        border-radius: 10px;
+        border-radius: 12px;
         background: #ffffff;
         font-size: 14px;
         color: #111827;
+        transition: 0.25s ease;
+    }
+    .search-input:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 8px rgba(59,130,246,0.25);
     }
 
+    /* FILTER DROPDOWN */
     .filter-section {
         position: relative;
         min-width: 180px;
+        animation: fadeUp 0.9s ease-out;
     }
 
     .filter-select {
         width: 100%;
         padding: 12px 36px 12px 14px;
         border: 1px solid #e2e8f0;
-        border-radius: 10px;
+        border-radius: 12px;
         background: #ffffff;
+        transition: 0.25s ease;
+    }
+    .filter-select:hover {
+        border-color: #3b82f6;
     }
 
+    /* CARD WRAPPER */
     .card {
         background: #ffffff;
         border: none;
-        border-radius: 14px;
+        border-radius: 16px;
         overflow: hidden;
         box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+        animation: fadeUp 1s ease-out;
+        transition: 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 28px rgba(0,0,0,0.07);
     }
 
+    /* TABLE */
     .table {
         width: 100%;
         border-collapse: collapse;
         font-size: 14.5px;
     }
 
-    .table th, .table td {
+    .table th {
         padding: 16px 14px;
-        border-bottom: 1px solid #f1f5f9;
+        background: #f8fafc;
+        color: #1e293b;
+        border-bottom: 1px solid #e2e8f0;
+        font-weight: 600;
+        letter-spacing: 0.3px;
     }
 
+    .table td {
+        padding: 16px 14px;
+        color: #0f172a;
+        border-bottom: 1px solid #f1f5f9;
+        transition: 0.2s ease;
+    }
+
+    .table tbody tr:hover {
+        background: #f1f5f9;
+        transform: scale(1.005);
+        transition: 0.2s ease-in-out;
+    }
+
+    /* LINK VIEW */
+    .link-view {
+        color: #2563eb;
+        font-weight: 500;
+        transition: 0.2s ease;
+    }
+    .link-view:hover {
+        color: #1d4ed8;
+        text-decoration: underline;
+    }
+
+    /* ANIMATION CLASS */
     .fade-up {
         opacity: 0;
         transform: translateY(24px);
@@ -117,6 +182,7 @@
         transform: translateY(0);
     }
 </style>
+
 
 <main class="content-wrapper">
 
@@ -145,7 +211,7 @@
             <table class="table" id="reportTable">
                 <thead>
                     <tr>
-                        <th>Noo</th>
+                        <th>No</th>
                         <th>Section</th>
                         <th>Kondisi Temuan</th>
                         <th>Potensi Bahaya</th>

@@ -21,7 +21,7 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        /* SIDEBAR */
+        /* SIDEBAR ONLY */
         .sidebar {
             width: 260px;
             background: linear-gradient(180deg, #717d8b 0%, #64707e 100%);
@@ -36,83 +36,18 @@
             flex-direction: column;
             z-index: 999;
         }
-
-        .brand {
-            font-size: 1.8rem;
-            font-weight: 800;
-            text-align: center;
-            padding: 0 1.25rem 2rem;
-            letter-spacing: -1px;
-            color: white;
-        }
-
-        .menu {
-            list-style: none;
-            padding: 0 0 2rem;
-            margin: 0;
-            flex: 1;
-        }
-
+        .brand { font-size: 1.8rem; font-weight: 800; text-align: center; padding: 0 1.25rem 2rem; letter-spacing: -1px; color: white; }
+        .menu { list-style: none; padding: 0 0 2rem; margin: 0; flex: 1; }
         .menu a {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 0.9rem 1.5rem;
-            color: rgba(255, 255, 255, 0.92);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: 0.25s;
-            border-left: 4px solid transparent;
+            display: flex; align-items: center; gap: 14px;
+            padding: 0.9rem 1.5rem; color: rgba(255, 255, 255, 0.92);
+            text-decoration: none; font-weight: 500; font-size: 1rem;
+            transition: 0.25s; border-left: 4px solid transparent;
         }
-
-        .menu a:hover {
-            background: rgba(255, 255, 255, 0.12);
-            color: white;
-        }
-
-        .menu a.active {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border-left-color: #60a5fa;
-        }
-
-        .logout {
-            padding: 0 1.25rem;
-        }
-
-        .logout-btn {
-            width: 100%;
-            padding: 0.85rem 1.5rem;
-            background: #dc2626;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        /* HEADER FIX */
-        .main-header {
-            position: fixed;
-            top: 0;
-            left: 260px;     /* karena sidebar 260px */
-            width: calc(100% - 260px);
-            height: 65px;
-            background: white;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-            z-index: 998;
-        }
-
-        /* CONTENT */
-        .content-wrapper {
-            margin-left: 260px;
-            padding: 25px;
-            padding-top: 95px; /* ↓ turun karena header tinggi 65px */
-        }
+        .menu a:hover { background: rgba(255, 255, 255, 0.12); color: white; }
+        .menu a.active { background: rgba(255, 255, 255, 0.2); color: white; border-left-color: #60a5fa; }
+        .logout { padding: 0 1.25rem; }
+        .logout-btn { width: 100%; padding: 0.85rem 1.5rem; background: #dc2626; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
     </style>
 </head>
 
@@ -131,7 +66,6 @@
                    class="{{ request()->routeIs('she.dashboard') ? 'active' : '' }}">
                    <i class="bi bi-speedometer2"></i> Dashboard
                 </a>
-
             </li>
 
             <li>
@@ -141,7 +75,14 @@
                 </a>
             </li>
 
-            <li><a href="#"><i class="bi bi-exclamation-triangle"></i> Insiden</a></li>
+            {{-- EDIT: ganti "#" menjadi route she.insiden + aktifkan state --}}
+            <li>
+                <a href="{{ route('she.insiden') }}"
+                   class="{{ request()->routeIs('she.insiden') ? 'active' : '' }}">
+                   <i class="bi bi-exclamation-triangle"></i> Insiden
+                </a>
+            </li>
+
             <li><a href="#"><i class="bi bi-shield-check"></i> Komitmen K3</a></li>
             <li><a href="#"><i class="bi bi-bicycle"></i> Safety Riding</a></li>
             <li><a href="#"><i class="bi bi-binoculars"></i> Safety Patrol</a></li>
