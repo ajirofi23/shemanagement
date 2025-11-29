@@ -145,7 +145,7 @@
             <table class="table" id="reportTable">
                 <thead>
                     <tr>
-                        <th>No</th>
+                        <th>Noo</th>
                         <th>Section</th>
                         <th>Kondisi Temuan</th>
                         <th>Potensi Bahaya</th>
@@ -266,10 +266,10 @@
 
         const imgData = canvas.toDataURL('image/jpeg', 1.0);
 
-        const pdf = new jsPDF({ 
-            orientation: img.width > img.height ? 'landscape' : 'portrait', 
-            unit: 'pt', 
-            format: 'a4' 
+        const pdf = new jsPDF({
+            orientation: img.width > img.height ? 'landscape' : 'portrait',
+            unit: 'pt',
+            format: 'a4'
         });
 
         const pageW = pdf.internal.pageSize.width;
@@ -278,11 +278,11 @@
         const ratio = Math.min(pageW / img.width, pageH / img.height);
 
         pdf.addImage(
-            imgData, 
-            'JPEG', 
-            (pageW - img.width*ratio)/2, 
-            (pageH - img.height*ratio)/2, 
-            img.width*ratio, 
+            imgData,
+            'JPEG',
+            (pageW - img.width*ratio)/2,
+            (pageH - img.height*ratio)/2,
+            img.width*ratio,
             img.height*ratio
         );
 
