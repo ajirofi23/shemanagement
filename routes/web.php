@@ -28,9 +28,11 @@ Route::post('/logout', [LoginController::class, 'logout'])
 // SHE Dashboard (no controller)
 Route::view('/she/dashboard', 'SHE.dashboard')->name('she.dashboard');
 
+Route::view('/it/management-user', 'IT.managementuser')->name('it.managementuser');
 Route::get('/she-policies', function () {
     return view('she-policies');
 })->name('she.policies');
+
 
 
 Route::get('/training-materials', [TrainingMaterialsController::class, 'index'])->name('training.materials');

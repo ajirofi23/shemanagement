@@ -123,37 +123,18 @@
         <div class="brand">AICC</div>
 
         <ul class="menu">
-            <li>
-                <a href="{{ route('she.dashboard') }}" class="active">
-                    <i class="bi bi-speedometer2"></i> Dashboard
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="bi bi-exclamation-circle"></i> Hyari Hatto
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="bi bi-exclamation-triangle"></i> Insiden
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="bi bi-shield-check"></i> Komitmen K3
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="bi bi-bicycle"></i> Safety Riding
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="bi bi-binoculars"></i> Safety Patrol
-                </a>
-            </li>
-        </ul>
+    <li>
+        <a href="{{ route('she.dashboard') }}" class="active">
+            <i class="bi bi-speedometer2"></i> Dashboard
+        </a>
+    </li>
+
+    <li>
+        <a href="{{ route('it.managementuser') }}">
+            <i class="bi bi-people"></i> Management User
+        </a>
+    </li>
+</ul>
 
         <div class="logout">
             <button type="button" class="logout-btn">

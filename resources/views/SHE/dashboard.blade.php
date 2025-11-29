@@ -130,19 +130,21 @@
         }
 
         /* Top bar */
-        .topbar {
-            position: fixed;
-            top: 0; left: 180px; right: 0;
-            height: 56px;
-            background: #fff;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding: 0 18px;
-            z-index: 5;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-        }
+       .topbar {
+    position: fixed;
+    top: 0;
+    left: 260px; /* sebelumnya 180px */
+    right: 0;
+    height: 56px;
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 18px;
+    z-index: 5;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
         .user-avatar {
             display: inline-block;
             width: 24px; height: 24px;
@@ -158,10 +160,10 @@
 
         /* Content */
         .content {
-            margin-left: 180px;
-            padding: 22px;
-            padding-top: 78px; /* space for topbar */
-        }
+    margin-left: 260px; /* sebelumnya 180px */
+    padding: 22px;
+    padding-top: 78px;
+}
         /* NEW: center and constrain content for better readability */
         .content-inner {
             max-width: 1200px;
