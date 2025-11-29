@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TrainingMaterialsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -24,5 +25,12 @@ Route::post('/logout', [LoginController::class, 'logout'])
     ->middleware('auth');
 
 // NEW: SHE dashboard route (no middleware; controller handles auth/role)
-Route::get('/she/dashboard', [SheDashboardController::class, 'index'])
-    ->name('she.dashboard');
+// SHE Dashboard (no controller)
+Route::view('/she/dashboard', 'SHE.dashboard')->name('she.dashboard');
+
+Route::get('/she-policies', function () {
+    return view('she-policies');
+})->name('she.policies');
+
+
+Route::get('/training-materials', [TrainingMaterialsController::class, 'index'])->name('training.materials');

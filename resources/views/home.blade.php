@@ -330,6 +330,15 @@
             transform: translateY(0);
         }
 
+        /* === Page Load Transition === */
+        body.page-loading {
+            opacity: 0;
+            transition: opacity 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        body.page-loaded {
+            opacity: 1;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
@@ -348,7 +357,7 @@
         }
     </style>
 </head>
-<body>
+<body class="page-loading">
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -443,7 +452,7 @@
                         <i class="bi bi-award" style="font-size: 2.2rem; color: #8b5cf6;"></i>
                     </div>
                     <h3 class="mt-3">SMK3</h3>
-                    <p>Sistem Manajemen Keselamatan dan Kesehatan Kerja — certified by Ministry of Manpower.</p>
+                    <p>Sistem Manajemen Keselamatan dan Kesehatan Kerja certified by Ministry of Manpower.</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -522,6 +531,34 @@
                     <p>Role-based SHE training, certification tracking, and emergency drills for all personnel.</p>
                 </div>
             </div>
+            <!-- Newly Added Capabilities -->
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card fade-up">
+                    <div class="feature-icon">
+                        <i class="bi bi-geo-alt"></i>
+                    </div>
+                    <h3>Site Safety Audits</h3>
+                    <p>Regular internal and third-party audits to ensure compliance, identify gaps, and drive corrective actions.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card fade-up">
+                    <div class="feature-icon">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+                    <h3>Contractor SHE Management</h3>
+                    <p>End-to-end oversight of contractor safety protocols, orientation, and performance evaluation.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card fade-up">
+                    <div class="feature-icon">
+                        <i class="bi bi-lightning-charge"></i>
+                    </div>
+                    <h3>Emergency Preparedness</h3>
+                    <p>Robust emergency response plans, crisis simulations, and cross-functional response teams.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -534,7 +571,7 @@
                     The SHE Department is the cornerstone of PT AICC’s commitment to operational excellence. We embed safety and sustainability into every process, ensuring a healthy workplace and responsible environmental practices.
                 </p>
                 <p class="text-muted">
-                    Our team of certified professionals drives a culture where every employee goes home safely — every day.
+                    Our team of certified professionals drives a culture where every employee goes home safely every day.
                 </p>
             </div>
             <div class="col-lg-6 mt-4 mt-lg-0 fade-up">
@@ -545,7 +582,9 @@
                         <li class="mb-2">✅ 100% Compliance with Government Regulations</li>
                         <li class="mb-2">✅ Continuous Environmental Improvement</li>
                         <li class="mb-2">✅ Empowered & Trained Workforce</li>
-                        <li>✅ Transparent SHE Reporting</li>
+                        <li class="mb-2">✅ Transparent SHE Reporting</li>
+                        <li class="mb-2">✅ Community Health & Safety Engagement</li>
+                        <li>✅ Innovation in Sustainable Operations</li>
                     </ul>
                 </div>
             </div>
@@ -556,7 +595,7 @@
     <div class="container">
         <div class="cta-section fade-up">
             <h2>Committed to Excellence in Every Operation</h2>
-            <p>PT AICC’s SHE Department leads by example — turning safety and sustainability into core business values.</p>
+            <p>PT AICC’s SHE Department leads by example turning safety and sustainability into core business values.</p>
             <a href="#contact" class="btn btn-primary">Reach Out to Our Team</a>
         </div>
     </div>
@@ -574,8 +613,8 @@
                 <div class="col-md-3 fade-up">
                     <h5>Resources</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">SHE Policies</a></li>
-                        <li><a href="#">Training Materials</a></li>
+                        <li><a href="{{ route('she.policies') }}">SHE Policies</a></li>
+                        <li><a href="{{ route('training.materials') }}">Training Materials</a></li>
                         <li><a href="#">Incident Reports</a></li>
                         <li><a href="#">Sustainability Reports</a></li>
                     </ul>
@@ -583,10 +622,9 @@
                 <div class="col-md-3 fade-up">
                     <h5 id="contact">Contact</h5>
                     <ul class="list-unstyled">
-                        <li>✉️ she@pt-aicc.com</li>
-                        <li>📞 Ext. 1234 (Internal)</li>
-                        <li>📍 Head Office, Jakarta</li>
-                        <li><a href="#" style="color: #2563eb;">Internal SHE Portal</a></li>
+                        <li>✉️ publicrelation@ijtt-id.com</li>
+                        <li>📞 +62 21 8904590</li>
+                        <li>📍 Karawang Internasional Industry City (KIIC)</li>
                     </ul>
                 </div>
             </div>
@@ -634,6 +672,17 @@
             document.querySelectorAll('.fade-up').forEach(el => {
                 observer.observe(el);
             });
+        });
+    </script>
+
+    <!-- === Page Load Fade-In Animation === -->
+    <script>
+        // Trigger fade-in on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.body.classList.add('page-loaded');
+                document.body.classList.remove('page-loading');
+            }, 50);
         });
     </script>
 </body>
