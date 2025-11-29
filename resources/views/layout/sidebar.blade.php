@@ -155,15 +155,15 @@
     </nav>
 
     <!-- Main Content (Contoh sederhana) -->
-    <div style="margin-left: 260px; padding: 2rem; background: #f9fafb; min-height: 100vh;">
+    {{-- <div style="margin-left: 260px; padding: 2rem; background: #f9fafb; min-height: 100vh;">
         <h1 style="color: #0f172a;">SHE Dashboard – PT AICC</h1>
         <p class="text-muted">Welcome to the SHE Monitoring System.</p>
-    </div>
+    </div> --}}
 
     <!-- MAIN CONTENT -->
-    <main class="content-wrapper">
-        @yield('content')
-    </main>
+    <div class="main-content" style="margin-left:10px; padding:2rem; background:#f9fafb; min-height:100vh;">
+    @yield('content')
+</div>
 
 </body>
 </html>
