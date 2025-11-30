@@ -136,7 +136,7 @@
     overflow-x: auto;
 }
 
-.table td, 
+.table td,
 .table th {
     white-space: nowrap;   /* teks tidak turun ke bawah */
 }
@@ -151,7 +151,11 @@
 
     <!-- Sidebar (Struktur TIDAK DIUBAH) -->
     <nav class="sidebar">
-        <div class="brand">AICC</div>
+         <div class="brand">
+            <img src="{{ asset('template/logo/logo.png') }}" alt="AICC Logo"
+                 style="max-width: 160px; height: auto; display: block; margin: 0 auto;">
+        </div>
+
 
         <ul class="menu">
     <li>

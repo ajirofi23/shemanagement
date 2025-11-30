@@ -26,7 +26,7 @@
         font-family: 'Poppins', sans-serif;
         display: flex;
         flex-direction: column;
-        z-index: 1000 !important; 
+        z-index: 1000 !important;
     }
 
     .main-content {
@@ -35,12 +35,12 @@
         background: #f9fafb;
         min-height: 100vh;
         position: relative;
-        z-index: 1; 
-        overflow-x: auto; 
+        z-index: 1;
+        overflow-x: auto;
     }
 
     body {
-        overflow-x: hidden; 
+        overflow-x: hidden;
     }
 
         .brand {
@@ -128,14 +128,14 @@
         }
 
         .custom-table-wrapper {
-            padding-right: 20px; 
+            padding-right: 20px;
             padding-left: 5px;
             overflow-x: auto;
         }
 
-        .table td, 
+        .table td,
         .table th {
-            white-space: nowrap; 
+            white-space: nowrap;
         }
 
         .table img {
@@ -147,7 +147,11 @@
 <body>
 
     <nav class="sidebar">
-        <div class="brand">AICC</div>
+          <div class="brand">
+            <img src="{{ asset('template/logo/logo.png') }}" alt="AICC Logo"
+                 style="max-width: 160px; height: auto; display: block; margin: 0 auto;">
+        </div>
+
 
         <ul class="menu">
             <li>
@@ -163,21 +167,21 @@
                     <i class="bi bi-file-earmark-text"></i> Laporan Hyari Hatto
                 </a>
             </li>
-            
+
             <li>
                 <a href="{{ route('pic.komitmenk3') }}"
                    class="{{ request()->routeIs('pic.komitmenk3') ? 'active' : '' }}">
                     <i class="bi bi-hand-thumbs-up"></i> Komitmen K3
                 </a>
             </li>
-            
+
             <li>
                 <a href="{{ route('pic.safetypatroltemuan') }}"
                    class="{{ request()->routeIs('pic.safetypatroltemuan') ? 'active' : '' }}">
                     <i class="bi bi-search"></i> Temuan Safety Patrol
                 </a>
             </li>
-            
+
             <li>
                 <a href="{{ route('pic.safetyridingtemuan') }}"
                    class="{{ request()->routeIs('pic.safetyridingtemuan') ? 'active' : '' }}">
