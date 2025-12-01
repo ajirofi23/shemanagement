@@ -102,3 +102,8 @@ Route::get('/komitmen-k3/section/{section}', function ($section) {
     // return a section page without using a controller
     return view('SHE.section', ['section' => $section]);
 })->name('she.section'); // FIX: add missing semicolon
+
+// Safety Riding page without controller
+Route::get('/she/safety-riding', function () {
+    return view('SHE.safetyriding');
+})->name('she.safetyriding');

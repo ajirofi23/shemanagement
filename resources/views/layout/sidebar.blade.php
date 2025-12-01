@@ -90,7 +90,14 @@
                    <i class="bi bi-shield-check"></i> Komitmen K3
                 </a>
             </li>
-            <li><a href="#"><i class="bi bi-bicycle"></i> Safety Riding</a></li>
+
+            <!-- CHANGED: Safety Riding now uses a named route + active state -->
+            <li>
+                <a href="{{ route('she.safetyriding') }}"
+                   class="{{ request()->routeIs('she.safetyriding') ? 'active' : '' }}">
+                   <i class="bi bi-bicycle"></i> Safety Riding
+                </a>
+            </li>
             <li><a href="#"><i class="bi bi-binoculars"></i> Safety Patrol</a></li>
         </ul>
 

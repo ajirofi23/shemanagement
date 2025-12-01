@@ -19,62 +19,62 @@
         }
 
         /* ====== TITLE & SUBTITLE ====== */
-        .k3-title { 
-            color:#0f172a; 
-            font-weight:800; 
-            letter-spacing:.4px; 
+        .k3-title {
+            color:#0f172a;
+            font-weight:800;
+            letter-spacing:.4px;
             font-size:1.55rem;
             animation: fadeSlideUp .6s ease;
         }
-        .k3-subtitle { 
-            color:#6b7280; 
-            font-size:.95rem; 
+        .k3-subtitle {
+            color:#6b7280;
+            font-size:.95rem;
             animation: fadeSlideUp .75s ease;
         }
 
         /* ====== CARD WRAPPER ====== */
-        .card-k3 { 
-            border-radius:22px; 
-            background:#ffffffee; 
-            backdrop-filter:blur(10px); 
-            border:1px solid #e5e7eb; 
-            box-shadow:0 6px 16px rgba(0,0,0,0.06); 
+        .card-k3 {
+            border-radius:22px;
+            background:#ffffffee;
+            backdrop-filter:blur(10px);
+            border:1px solid #e5e7eb;
+            box-shadow:0 6px 16px rgba(0,0,0,0.06);
             padding-bottom:6px;
             animation: softPop .6s ease;
         }
 
         /* ====== PAGE WRAPPER ====== */
-        .content-with-sidebar { 
-            margin-left:280px; 
-            display:flex; 
-            justify-content:center; 
-            padding-top:8vh; 
+        .content-with-sidebar {
+            margin-left:280px;
+            display:flex;
+            justify-content:center;
+            padding-top:8vh;
             animation: fadeSlideRight .65s ease;
         }
-        @media (max-width: 992px) { 
-            .content-with-sidebar { margin-left:0; } 
+        @media (max-width: 992px) {
+            .content-with-sidebar { margin-left:0; }
         }
 
         /* ====== FILTER BUTTONS ====== */
-        .filters-bar { 
-            display:flex; 
-            gap:12px; 
-            margin:12px 0 20px; 
+        .filters-bar {
+            display:flex;
+            gap:12px;
+            margin:12px 0 20px;
             animation: fadeSlideUp .7s ease;
         }
         @media (max-width: 768px) {
             .filters-bar { flex-direction:column; }
         }
         .filter-btn {
-            display:flex; 
-            align-items:center; 
-            gap:8px; 
-            padding:8px 14px; 
-            border-radius:10px; 
-            border:1px solid #d1d5db; 
-            background:#f9fafb; 
-            color:#374151; 
-            font-weight:600; 
+            display:flex;
+            align-items:center;
+            gap:8px;
+            padding:8px 14px;
+            border-radius:10px;
+            border:1px solid #d1d5db;
+            background:#f9fafb;
+            color:#374151;
+            font-weight:600;
             transition:.25s;
         }
         .filter-btn:hover {
@@ -107,7 +107,7 @@
             border-bottom:2px solid #e5e7eb;
             font-size:0.9rem;
         }
-        .table-k3 th, 
+        .table-k3 th,
         .table-k3 td {
             padding:12px 14px;
             vertical-align:middle;
@@ -115,20 +115,20 @@
         }
 
         /* ====== BADGE ====== */
-        .status-badge { 
-            padding:6px 12px; 
-            border-radius:999px; 
-            font-weight:700; 
-            font-size:.85rem; 
+        .status-badge {
+            padding:6px 12px;
+            border-radius:999px;
+            font-weight:700;
+            font-size:.85rem;
         }
-        .status-ok { 
-            background:#22c55e; 
-            color:#fff; 
+        .status-ok {
+            background:#22c55e;
+            color:#fff;
             box-shadow:0 0 6px rgba(34,197,94,0.4);
         }
-        .status-warn { 
-            background:#f43f5e; 
-            color:#fff; 
+        .status-warn {
+            background:#f43f5e;
+            color:#fff;
             box-shadow:0 0 6px rgba(244,63,94,0.4);
         }
 
@@ -154,16 +154,22 @@
             transform:scale(1.12);
             box-shadow:0 4px 12px rgba(79,70,229,0.35);
         }
-        .action-btn svg { 
-            width:18px; 
-            height:18px; 
-            stroke-width:1.4; 
+        .action-btn svg {
+            width:18px;
+            height:18px;
+            stroke-width:1.4;
         }
 
         .table-k3 td:last-child,
         .table-k3 th:last-child {
             text-align:center !important;
         }
+
+            .filter-btn input[type="date"]::-webkit-calendar-picker-indicator {
+        cursor:pointer;
+        filter:invert(35%);
+    }
+
     </style>
 
 
@@ -181,20 +187,27 @@
                     </div>
 
                     <!-- Filters -->
-                    <div class="filters-bar">
-                        <button type="button" class="filter-btn">
-                            <svg viewBox="0 0 16 16" fill="currentColor">
-                                <path d="M1.5 2.5a1 1 0 0 1 1-1h11a1 1 0 0 1 .8 1.6L10 8v4.5a1 1 0 0 1-1.6.8l-2-1.5a1 1 0 0 1-.4-.8V8L1.7 3.1a1 1 0 0 1-.2-.6z"/>
-                            </svg>
-                            <span>Filter by Month/Year</span>
-                        </button>
+                                <div class="filters-bar">
+                                <div class="filter-btn" style="padding: 6px 14px;">
+                <svg viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M3 1a1 1 0 0 0-1 1v1H1.5a.5.5 0 0 0 0 1H15a.5.5 0 0 0 0-1H14V2a1 1 0 0 0-1-1h-1V0h-1v1H6V0H5v1H3zm11 4H2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V5z"/>
+                </svg>
 
-                        <button type="button" class="filter-btn">
-                            <svg viewBox="0 0 16 16" fill="currentColor">
-                                <path d="M1.5 2.5a1 1 0 0 1 1-1h11a1 1 0 0 1 .8 1.6L10 8v4.5a1 1 0 0 1-1.6.8l-2-1.5a1 1 0 0 1-.4-.8V8L1.7 3.1a1 1 0 0 1-.2-.6z"/>
-                            </svg>
-                            <span>Filter by Name/Nip</span>
-                        </button>
+                <input
+                    type="date"
+                    class="form-control"
+                    style="border:none; background:transparent; font-weight:600; padding:0; width:150px; outline:none;"
+                >
+</div>
+
+                        <button type="button" class="filter-btn" id="filter-belum">
+                <svg viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M8 1a3 3 0 0 0-3 3v1H3.5a.5.5 0 0 0 0 1H5v2.5a3 3 0 0 0 3 3h0a3 3 0 0 0 3-3V6h1.5a.5.5 0 0 0 0-1H11V4a3 3 0 0 0-3-3z"/>
+                </svg>
+                <span>Filter: Belum Upload</span>
+            </button>
+
+
                     </div>
 
                     <!-- TABLE -->
@@ -321,4 +334,69 @@
             </div>
         </div>
     </div>
+
+   <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* ================================
+       1) FILTER BY DATE (placeholder)
+    =================================*/
+    const dateInput = document.querySelector('.filter-btn input[type="date"]');
+    if (dateInput) {
+        dateInput.addEventListener("change", function () {
+            const selectedDate = this.value;
+            const rows = document.querySelectorAll(".table-k3 tbody tr");
+
+            rows.forEach(row => {
+                // Sementara tidak filter apapun (karena belum ada kolom tanggal)
+                row.style.display = "";
+            });
+        });
+    }
+
+    /* ================================
+       2) FILTER: BELUM UPLOAD (TOGGLE)
+       - Menggantikan dropdown section
+       - Mencari .status-warn pada kolom status
+    =================================*/
+    const filterBtn = document.querySelector('#filter-belum-btn'); // ID baru tombol
+    const tableRows = document.querySelectorAll(".table-k3 tbody tr");
+
+    let filterActive = false;
+
+    if (filterBtn) {
+        filterBtn.addEventListener("click", function () {
+
+            filterActive = !filterActive;
+
+            // Efek visual tombol saat aktif
+            if (filterActive) {
+                filterBtn.style.background = "#fff1f2";
+                filterBtn.style.borderColor = "#fda4af";
+            } else {
+                filterBtn.style.background = "";
+                filterBtn.style.borderColor = "";
+            }
+
+            // Jalankan filter baris
+            tableRows.forEach(row => {
+                const statusCell = row.children[5]; // kolom status index ke-5
+                if (!statusCell) return;
+
+                const badge = statusCell.querySelector(".status-badge");
+                const isBelum = badge && badge.classList.contains("status-warn");
+
+                if (filterActive) {
+                    row.style.display = isBelum ? "" : "none";
+                } else {
+                    row.style.display = "";
+                }
+            });
+        });
+    }
+
+});
+</script>
+
+
 @endsection

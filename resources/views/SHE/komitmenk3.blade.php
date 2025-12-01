@@ -3,30 +3,30 @@
 @section('content')
     @include('layout.header')
 
-    @extends('layout.sidebar')
+    <!-- @extends('layout.sidebar')
 
 @section('content')
-    @include('layout.header')
+    @include('layout.header') -->
 
     <style>
     /* ====== TYPOGRAPHY ====== */
-    .k3-title { 
-        color:#0f172a; 
-        font-weight:800; 
+    .k3-title {
+        color:#0f172a;
+        font-weight:800;
         letter-spacing: 0.4px;
         font-size: 1.55rem;
         animation: fadeDown .6s ease;
     }
-    .k3-subtitle { 
-        color:#6b7280; 
+    .k3-subtitle {
+        color:#6b7280;
         font-size: 0.95rem;
         animation: fadeDown .8s ease;
     }
 
     /* ====== BADGE ====== */
-    .badge-target { 
-        background:#e0edff; 
-        color:#1e40af; 
+    .badge-target {
+        background:#e0edff;
+        color:#1e40af;
         padding:6px 12px;
         border-radius: 10px;
         font-weight:600;
@@ -34,7 +34,7 @@
         box-shadow: 0 2px 5px rgba(30,64,175,0.15);
         transition: .3s;
     }
-    .badge-target:hover { 
+    .badge-target:hover {
         transform: translateY(-2px);
     }
 
@@ -114,8 +114,8 @@
     }
 
     /* ====== SIDEBAR FIX ====== */
-    .content-with-sidebar { 
-        margin-left: 280px; 
+    .content-with-sidebar {
+        margin-left: 280px;
         display: flex;
         justify-content: center;
         padding-top: 8vh;
@@ -239,6 +239,35 @@
             row.style.display = section.includes(value) ? "" : "none";
         });
     });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const rows = document.querySelectorAll("table tbody tr");
+
+    rows.forEach(row => {
+        let actualCell = row.children[3]; // kolom Actual
+        if (!actualCell) return;
+
+        let text = actualCell.innerText.replace("%", "").trim();
+        let value = parseInt(text);
+
+        // Reset styling dulu
+        actualCell.style.fontWeight = "700";
+
+        // Terapkan warna berdasarkan nilai
+        if (value === 100) {
+            actualCell.style.color = "#22c55e"; // hijau
+        } else if (value >= 80) {
+            actualCell.style.color = "#facc15"; // kuning
+        } else if (value >= 50) {
+            actualCell.style.color = "#f97316"; // oranye kemerahan
+        } else if (value > 0) {
+            actualCell.style.color = "#ef4444"; // merah
+        } else {
+            actualCell.style.color = "#b91c1c"; // merah tua (0%)
+        }
+    });
+});
+
     </script>
 
 @endsection
