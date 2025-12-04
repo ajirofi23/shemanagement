@@ -44,7 +44,7 @@ Route::get('/she/hyari-hatto', function () {
 
 // // HALAMAN INSIDEN (tanpa controller)
 // Route::get('/she/insiden', function () {
-//     return view('SHE.insiden');
+//     return view('SHE.insiden')d
 // })->name('she.insiden');
 // // // SHE - Insiden Form (no controller)
 // // Route::get('/she/insiden/form', function () {
@@ -107,3 +107,7 @@ Route::get('/komitmen-k3/section/{section}', function ($section) {
 Route::get('/she/safety-riding', function () {
     return view('SHE.safetyriding');
 })->name('she.safetyriding');
+
+Route::get('/she/safety-patrol', function () {
+    return view('SHE.safetypatrol');
+})->name('she.safetypatrol');

@@ -98,7 +98,13 @@
                    <i class="bi bi-bicycle"></i> Safety Riding
                 </a>
             </li>
-            <li><a href="#"><i class="bi bi-binoculars"></i> Safety Patrol</a></li>
+            
+            <li>
+                <a href="{{ route('she.safetypatrol') }}"
+                   class="{{ request()->routeIs('she.safetypatrol') ? 'active' : '' }}">
+                   <i class="bi bi-binoculars"></i> Safety Patrol
+                </a>
+            </li>
         </ul>
 
         <div class="logout">
