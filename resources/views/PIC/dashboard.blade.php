@@ -1,5 +1,5 @@
 @extends('layout.picsidebar')
-@extends('layout.header')
+
 
 @section('content')
 
