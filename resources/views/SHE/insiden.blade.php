@@ -221,33 +221,23 @@
         const selectedMonth = monthInput.value; // format: yyyy-mm
 
         rows.forEach(row => {
-            const dateText = row.children[1].textContent.trim(); // Tanggal dd/mm/yy
-            const sectionText = row.children[3].textContent.toLowerCase(); // Lokasi / Section
+            const [id, dateText, timeText, sectionText] = Array.from(row.children).map(td => td.textContent.trim());
+            const sectionLower = sectionText.toLowerCase();
 
-            let matchSection = true;
+            // Filter Section
+            const matchSection = sectionSearch ? sectionLower.includes(sectionSearch) : true;
+
+            // Filter Month
             let matchMonth = true;
-
-            // --- Filter berdasarkan Section ---
-            if (sectionSearch !== "") {
-                matchSection = sectionText.includes(sectionSearch);
-            }
-
-            // --- Filter berdasarkan Month/Year ---
-            if (selectedMonth !== "") {
+            if (selectedMonth) {
                 const [year, month] = selectedMonth.split("-");
-
                 const [dd, mm, yy] = dateText.split("/");
                 const fullYear = "20" + yy; // 25 → 2025
-
                 matchMonth = (fullYear === year && mm === month);
             }
 
-            // --- Tampilkan atau sembunyikan row ---
-            if (matchSection && matchMonth) {
-                row.style.display = "";
-            } else {
-                row.style.display = "none";
-            }
+            // Tampilkan atau sembunyikan row
+            row.style.display = (matchSection && matchMonth) ? "" : "none";
         });
     }
 
@@ -257,11 +247,12 @@
     // NAVIGATE: Tambah Insiden -> Form page
     const tambahButton = document.querySelector('.content-wrapper .btn-primary-aicc');
     if (tambahButton) {
-        tambahButton.addEventListener('click', function () {
+        tambahButton.addEventListener('click', () => {
             window.location.href = "{{ route('she.insiden.form') }}";
         });
     }
 </script>
+
 
 @endsection
 

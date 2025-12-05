@@ -161,6 +161,7 @@
             letter-spacing: 0.2px;
         }
 
+<<<<<<< HEAD
         .navbar-toggler-mobile {
             border: none;
             background: none;
@@ -184,6 +185,12 @@
         }
         
         /* ----------------------- TOGGLE DESKTOP STYLES ----------------------- */
+=======
+.table td,
+.table th {
+    white-space: nowrap;   /* teks tidak turun ke bawah */
+}
+>>>>>>> 69a271d9406e6beb69c0fe039ce7d59f6d4dbea3
 
         /* 1. Sidebar menyempit */
         body.toggled .sidebar {
@@ -308,12 +315,22 @@
                     <i class="bi bi-arrow-bar-left fs-5"></i>
                 </button>
 
+<<<<<<< HEAD
                 {{-- Tombol Toggle Mobile (EXISTING) --}}
                 <button class="navbar-toggler-mobile" type="button" id="sidebarToggle">
                     <i class="bi bi-list"></i>
                 </button>
                 <span class="app-title">{{ $title ?? 'SHE – PT AICC' }}</span>
             </div>
+=======
+    <!-- Sidebar (Struktur TIDAK DIUBAH) -->
+    <nav class="sidebar">
+         <div class="brand">
+            <img src="{{ asset('template/logo/logo.png') }}" alt="AICC Logo"
+                 style="max-width: 160px; height: auto; display: block; margin: 0 auto;">
+        </div>
+
+>>>>>>> 69a271d9406e6beb69c0fe039ce7d59f6d4dbea3
 
             <div class="right">
                 {{-- Asumsi Anda menggunakan Auth --}}
