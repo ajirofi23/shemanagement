@@ -169,22 +169,25 @@
             <div class="alert alert-danger py-2 mb-3">{{ session('error') }}</div>
         @endif
 
-        <form method="POST" action="#">
-            <div class="input-wrapper mb-3">
-                <span class="input-icon"><i class="ri-user-line"></i></span>
-                <input type="text" name="username" class="form-control" id="username" placeholder="Username" required>
-            </div>
+        <form method="POST" action="{{ route('login.process') }}">
+    @csrf
 
-            <div class="input-wrapper mb-3 position-relative">
-                <span class="input-icon"><i class="ri-lock-line"></i></span>
-                <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
-                <span class="password-toggle" id="togglePassword">
-                    <i class="ri-eye-line"></i>
-                </span>
-            </div>
+    <div class="input-wrapper mb-3">
+        <span class="input-icon"><i class="ri-user-line"></i></span>
+        <input type="text" name="usr" class="form-control" id="username" placeholder="Username" required>
+    </div>
 
-            <button type="submit" class="btn btn-login">Log In</button>
-        </form>
+    <div class="input-wrapper mb-3 position-relative">
+        <span class="input-icon"><i class="ri-lock-line"></i></span>
+        <input type="password" name="pswd" class="form-control" id="password" placeholder="Password" required>
+        <span class="password-toggle" id="togglePassword">
+            <i class="ri-eye-line"></i>
+        </span>
+    </div>
+
+    <button type="submit" class="btn btn-login">Log In</button>
+</form>
+
 
         <div class="footer mt-4">
             © {{ date('Y') }} <strong>SHE Management</strong>. All rights reserved.

@@ -1,86 +1,141 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-// Removed unused View facade import
 use App\Http\Controllers\TrainingMaterialsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\IT\DashboardController;
+use App\Http\Controllers\IT\UserController;
 
+/*
+|--------------------------------------------------------------------------
+| PUBLIC ROUTES (TANPA LOGIN)
+|--------------------------------------------------------------------------
+*/
+
+// Home bisa diakses tanpa login
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+// Layout test
 Route::get('/app', function () {
     return view('layouts.app');
 });
 
-// Login page + login submit
-Route::get('/login', [LoginController::class, 'showLoginForm'])
-    ->name('login')
-    ->middleware('guest');
-
-Route::post('/login', [LoginController::class, 'login'])
-    ->middleware('guest');
-
-// Logout
-Route::post('/logout', [LoginController::class, 'logout'])
-    ->name('logout')
-    ->middleware('auth');
-
-// NEW: SHE dashboard route (no middleware; controller handles auth/role)
-// SHE Dashboard (no controller)
-Route::view('/she/dashboard', 'SHE.dashboard')->name('she.dashboard');
-
-Route::view('/it/management-user', 'IT.managementuser')->name('it.managementuser');
-Route::view('/it/dashboard', 'IT.dashboard')->name('it.dashboard');
+// LOGIN – hanya untuk tamu (guest)
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [LoginController::class, 'login'])->name('login.process');
+});
 
 
-Route::get('/she-policies', function () {
-    return view('she-policies');
-})->name('she.policies');
+/*
+|--------------------------------------------------------------------------
+| PROTECTED ROUTES (HARUS LOGIN)
+|--------------------------------------------------------------------------
+*/
+Route::middleware('auth')->group(function () {
+
+    // LOGOUT
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+    /*
+    |--------------------------------------------------------------------------
+    | IT ROUTES (Login + Permission Required)
+    |--------------------------------------------------------------------------
+    */
+    Route::prefix('it')->middleware('permission')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index']);
+        Route::get('/management-user', [UserController::class, 'index']);
+    });
+    Route::get('/management-user', [UserController::class, 'index']);
+    Route::post('it/management-user/store', [UserController::class, 'store']);
+    Route::get('/it/management-user/edit/{id}', [UserController::class, 'edit']);
+    Route::put('/it/management-user/update/{id}', [UserController::class, 'update']);
+    Route::delete('it/management-user/destroy/{id}', [UserController::class, 'destroy']);
+    /*
+    |--------------------------------------------------------------------------
+    | ROUTES SHE (Login Only, No Permission)
+    |--------------------------------------------------------------------------
+    */
+    Route::view('/she/dashboard', 'SHE.dashboard')->name('she.dashboard');
+
+    Route::get('/she-policies', function () {
+        return view('she-policies');
+    })->name('she.policies');
+
+    Route::get('/training-materials', [TrainingMaterialsController::class, 'index'])
+        ->name('training.materials');
+
+    // Hyari Hatto
+    Route::get('/she/hyari-hatto', function () {
+        return view('she.hyari_hatto');
+    })->name('she.hyarihatto');
+
+    // Insiden
+    Route::get('/she/insiden', function () {
+        return view('SHE.insiden');
+    })->name('she.insiden');
+
+    Route::get('/she/insiden/form', function () {
+        return view('SHE.insiden_form');
+    })->name('she.insiden.form');
+
+    Route::post('/she/insiden', function (\Illuminate\Http\Request $request) {
+        $request->validate([
+            'tanggal' => 'required|date',
+            'jam' => 'required',
+            'lokasi' => 'required|string|max:150',
+            'kategori' => 'required|string',
+            'departemen' => 'required|string',
+            'kronologi' => 'required|string|max:3000',
+        ]);
+        return redirect()->route('she.insiden')
+            ->with('status', 'Laporan berhasil dikirim!');
+    })->name('she.insiden.store');
+
+    // Komitmen K3
+    Route::view('/she/komitmen-k3', 'SHE.komitmenk3')->name('she.komitmenk3');
+
+    // Section
+    Route::get('/she/section/{section?}', function ($section = 'ENG') {
+        return view('SHE.section', ['section' => $section]);
+    })->name('she.section');
+
+    Route::get('/komitmen-k3/section/{section}', function ($section) {
+        return view('SHE.section', ['section' => $section]);
+    })->name('she.section');
+
+    // Safety pages
+    Route::get('/she/safety-riding', function () {
+        return view('SHE.safetyriding');
+    })->name('she.safetyriding');
+
+    Route::get('/she/safety-patrol', function () {
+        return view('SHE.safetypatrol');
+    })->name('she.safetypatrol');
 
 
+    /*
+    |--------------------------------------------------------------------------
+    | PIC ROUTES
+    |--------------------------------------------------------------------------
+    */
+    Route::view('/pic/dashboard', 'PIC.dashboard')->name('pic.dashboard');
+    Route::view('/pic/laporanhyarihatto', 'PIC.laporanhyarihatto')->name('pic.laporanhyarihatto');
+    Route::view('/pic/komitmenk3', 'PIC.komitmenk3')->name('pic.komitmenk3');
+    Route::view('/pic/safetypatroltemuan', 'PIC.safetypatroltemuan')->name('pic.safetypatroltemuan');
+    Route::view('/pic/safetyridingtemuan', 'PIC.safetyridingtemuan')->name('pic.safetyridingtemuan');
+});
 
-Route::get('/training-materials', [TrainingMaterialsController::class, 'index'])->name('training.materials');
 
-// Hyari Hatto page without controller
-Route::get('/she/hyari-hatto', function () {
-    return view('she.hyari_hatto');
-})->name('she.hyarihatto');
-
-<<<<<<< HEAD
-
-
-
-
-Route::view('/pic/dashboard', 'PIC.dashboard')->name('pic.dashboard');
-Route::view('/pic/laporanhyarihatto', 'PIC.laporanhyarihatto')->name('pic.laporanhyarihatto');
-Route::view('/pic/komitmenk3', 'PIC.komitmenk3')->name('pic.komitmenk3');
-Route::put('/komitmen-k3/update/{id}', [KomitmenK3Controller::class, 'update'])->name('update.komitmenk3');
-Route::view('/pic/safetypatroltemuan', 'PIC.safetypatroltemuan')->name('pic.safetypatroltemuan');
-Route::view('/pic/safetyridingtemuan', 'PIC.safetyridingtemuan')->name('pic.safetyridingtemuan');
-=======
-// // Dashboard (opsional bila belum ada)
-// Route::get('/she/dashboard', function () {
-//     return view('welcome'); // ganti ke view dashboard Anda bila sudah ada
-// })->name('she.dashboard');
-
-// Hyari Hatto (opsional bila belum ada)
-Route::get('/she/hyari-hatto', function () {
-    return view('she.hyari_hatto'); // ganti ke view hyari hatto Anda bila sudah ada
-})->name('she.hyarihatto');
-
-// HALAMAN INSIDEN (tanpa controller)
-Route::get('/she/insiden', function () {
-    return view('SHE.insiden');
-})->name('she.insiden');
-
-// SHE - Insiden Form (no controller)
-Route::get('/she/insiden/form', function () {
-    return view('SHE.insiden_form');
-})->name('she.insiden.form');
-
-// Optional: handle submit without controller (demo)
-// You can later replace this with real persistence logic.
-Route::post('/she/insiden/store', function (\Illuminate\Http\Request $request) {
-    return redirect()->route('she.insiden.form')->with('status', 'Laporan berhasil dikirim.');
-})->name('she.insiden.store');
->>>>>>> 155e3a25b7836bdbb4b598b092211ff39fb0737b
+/*
+|--------------------------------------------------------------------------
+| NO PERMISSION PAGE
+|--------------------------------------------------------------------------
+*/
+Route::get('/no-permission', function() {
+    return "Anda belum memiliki menu yang bisa diakses. Hubungi admin.";
+})->name('no.permission');
+Route::get('/logout', function () {
+    return abort(403, 'TINDAKAN ANDA ILEGAL');
+});
